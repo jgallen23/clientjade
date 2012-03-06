@@ -56,6 +56,9 @@ You can check out a live example [here](/example/)
 
 ##History
 
+###0.0.2
+- fixed npm bin
+
 ###0.0.1 
 - initial commit
 

@@ -6,7 +6,7 @@ var compile = require('../lib/compile');
 
 
 program
-  .version('0.0.1')
+  .version('0.0.2')
   .option('-c, --compress', 'Compress output')
   .usage('<options> <jade files>');
 
