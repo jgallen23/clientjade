@@ -1,13 +1,9 @@
-#SRC = 
-TEST = test/*.js
-REPORTER = list
+site: docs/index.md example/
+	@cd site; ../node_modules/.bin/markx --head layout/head.html --foot layout/foot.html ../docs/index.md  > index.html
+	@cp -r example site/
 
-
-site : docs/index.md 
-	@./node_modules/.bin/markx --lang javascript docs/index.md | cat site/layout/head.html - site/layout/foot.html > site/index.html
-
-preview-docs:
-	@./node_modules/.bin/markx --lang javascript --preview 8001 docs/index.md 
+preview-site:
+	@cd site; ../node_modules/.bin/markx --preview 8001 --head layout/head.html --foot layout/foot.html ../docs/index.md 
 
 preview-readme:
 	@./node_modules/.bin/markx --preview 8001 README.md 

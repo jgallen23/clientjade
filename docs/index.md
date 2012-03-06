@@ -1,6 +1,6 @@
 # ClientJade
 
-clientjade is a command line tool to compile your jade templates into client side templates for use in the browser.
+clientjade is a command line tool to compile your jade templates into client side templates for use in the browser.  It will automatically include everything you need to render the templates, no need to include jade.js or runtime.js.
 
 ##Installation
 
@@ -20,9 +20,11 @@ clientjade is a command line tool to compile your jade templates into client sid
 	Examples:
 
 		# compile jade files into js
-		$ clientjade test1.jade test2.jade > jade.js
+		$ clientjade test1.jade test2.jade > templates.js
 
 ##Example
+
+Lets say you have two templates, test1.jade and test2.jade, that need to be used on the client side.
 
 test1.jade
 
@@ -34,7 +36,13 @@ test2.jade
 		each item in items
 			li= item
 
-include the output js file in your html and then all you need to do is call this:
+All you need to do is run: 
+
+	$ clientjade test1.jade test2.jade > templates.js
+
+And then include template.js file in your html.
+
+To render the templates, just make a call like this:
 
 	//jade.render(domNode, templateName, data);
 
@@ -42,9 +50,13 @@ include the output js file in your html and then all you need to do is call this
 
 	jade.render(document.getElementById('test2'), 'test2', { items: ['item1', 'item2', 'item3'] });
 
+### Live Example
+
+You can check out a live example [here](/example/)
+
 ##History
 
-###0.0.1 (03/06/2012)
+###0.0.1 
 - initial commit
 
 ##Future
