@@ -47,6 +47,9 @@ include the output js file in your html and then all you need to do is call this
 ###0.0.1 (03/06/2012)
 - initial commit
 
+##Future
+- convert entire folder
+- --no-runtime option
 
 ##Contributors
 - Greg Allen ([@jgaui](http://twitter.com/jgaui)) [jga.me](http://jga.me)
