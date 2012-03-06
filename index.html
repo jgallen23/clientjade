@@ -1,88 +1,94 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8'>
+	<head>
+		<title>ClientJade</title>
+    <link href='http://fonts.googleapis.com/css?family=Voces' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet" href="ui/common.css"/>
+		<link type="text/css" rel="stylesheet" href="ui/ir_black.css"/>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-24017782-2']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+    <div id="toc"></div>
+		<a href="http://github.com/jgallen23/clientjade"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
+		<div id="wrapper">
+<h1>ClientJade</h1>
+<p>clientjade is a command line tool to compile your jade templates into client side templates for use in the browser.  It will automatically include everything you need to render the templates, no need to include jade.js or runtime.js.
 
-  <title>jgallen23/clientjade @ GitHub</title>
+</p>
+<h2>Installation</h2>
+<pre><code><span class="title">npm</span> install -g clientjade</code></pre>
+<h2>Usage</h2>
+<pre><code>Usage: clientjade &lt;options> &lt;jade files>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #dae3e8;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #251c17; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #251c17; }
-    h3 { text-align: center; color: #251c17; }
-    a { color: #251c17; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+Options:
 
-<body>
-  <a href="https://github.com/jgallen23/clientjade"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+    -h, --help      output usage information
+    -V, --version   output the version number
+    -c, --compress  Compress output
 
-  <div id="container">
+Examples:
 
-    <div class="download">
-      <a href="https://github.com/jgallen23/clientjade/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/jgallen23/clientjade/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
+    <span class="comment"># compile jade files into js</span>
+    $ clientjade test1.jade test2.jade > templates.js</code></pre>
+<h2>Example</h2>
+<p>Lets say you have two templates, test1.jade and test2.jade, that need to be used on the client side.
 
-    <h1><a href="https://github.com/jgallen23/clientjade">clientjade</a>
-      <span class="small">by <a href="https://github.com/jgallen23">jgallen23</a></span></h1>
+</p>
+<p>test1.jade
 
-    <div class="description">
-      command line tool to compile your jade templates into client side templates for use in the browser
-    </div>
+</p>
+<pre><code>p Hello, my name <span class="keyword">is</span> <span class="comment">#{name}</span></code></pre>
+<p>test2.jade
 
-    
+</p>
+<pre><code>ul
+    <span class="keyword">each</span> item <span class="keyword">in</span> items
+        li= item</code></pre>
+<p>All you need to do is run: 
 
-    
+</p>
+<pre><code>$ clientjade test1<span class="preprocessor">.jade</span> test2<span class="preprocessor">.jade</span> > templates<span class="preprocessor">.js</span></code></pre>
+<p>And then include template.js file in your html.
 
-    
+</p>
+<p>To render the templates, just make a call like this:
 
-    
+</p>
+<pre><code>//jade.render(domNode, templateName, <span class="class"><span class="keyword">data</span>);</span>
 
-    
-      <h2>Authors</h2>
-      <p>Greg Allen (me@jga.me)<br/>      </p>
-    
+<span class="title">jade</span>.render(document.getElementById('test1'),<span class="string"> 'test1'</span>, { name:<span class="string"> 'Bob'</span> });
 
-    
-      <h2>Contact</h2>
-      <p>Greg (mail@jga23.com)<br/>      </p>
-    
+<span class="title">jade</span>.render(document.getElementById('test2'),<span class="string"> 'test2'</span>, { items: ['item1',<span class="string"> 'item2'</span>,<span class="string"> 'item3'</span>] });</code></pre>
+<h3>Live Example</h3>
+<p>You can check out a live example <a href="/example/">here</a>
 
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/jgallen23/clientjade/zipball/master">zip</a> or
-      <a href="https://github.com/jgallen23/clientjade/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/jgallen23/clientjade</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/jgallen23/clientjade">jgallen23/clientjade</a>
-    </div>
-
-  </div>
-
-</body>
-</html>
+</p>
+<h2>History</h2>
+<h3>0.0.1</h3>
+<ul>
+<li>initial commit</li>
+</ul>
+<h2>Future</h2>
+<ul>
+<li>convert entire folder</li>
+<li>--no-runtime option</li>
+</ul>
+<h2>Contributors</h2>
+<ul>
+<li>Greg Allen (<a href="http://twitter.com/jgaui">@jgaui</a>) <a href="http://jga.me">jga.me</a></li>
+</ul>
+</div>
+<script src="ui/jquery.min.js"></script>
+<script src="ui/jquery.toc.min.js"></script>
+<script>
+  $('#toc').toc();
+</script>
+</body></html>
