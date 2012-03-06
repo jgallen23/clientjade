@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+
+var program = require('commander');
+var compile = require('../lib/compile');
+
+
+program
+  .version('0.0.1')
+  .option('-c, --compress', 'Compress output')
+  .usage('<options> <jade files>');
+
+program.on('--help', function() {
+  console.log('  Examples:');  
+  console.log('');  
+  console.log('    # compile jade files into js');
+  console.log('    $ clientjade test1.jade test2.jade > jade.js');
+}); 
+
+program.parse(process.argv);
+
+
+if (program.args.length != 0) {
+  var opts = {
+    files: program.args,
+    compress: program.compress
+  }
+  compile(opts, function(err, result) {
+    process.stdout.write(result);
+  });
+
+} else {
+  process.stdout.write(program.helpInformation());
+  program.emit('--help');
+  process.exit(1);
+}

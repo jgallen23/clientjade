@@ -1,0 +1,22 @@
+{
+	"name": "clientjade",
+	"description": "a command line utility to generate compiled jade templates for the browser",
+	"version": "0.0.1",
+  "preferGlobal": "true",
+	"homepage": "https://github.com/jgallen23/clientjade",
+	"author": "Greg Allen <@jgaui> (http://jga.me)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jgallen23/clientjade.git"
+	},
+	"dependencies": {
+    "commander": "*",
+    "jade": "*",
+    "resistance": "*",
+    "uglify-js": "*"
+	},
+	"devDependencies": {
+		"markx": "*"
+	},
+	"keywords": ["jade", "template", "browser", "compile"]
+}

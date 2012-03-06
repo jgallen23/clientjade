@@ -1,0 +1,13 @@
+
+  Usage: clientjade <options> <jade files>
+
+  Options:
+
+    -h, --help      output usage information
+    -V, --version   output the version number
+    -c, --compress  Compress output
+
+  Examples:
+
+    # compile jade files into js
+    $ clientjade test1.jade test2.jade > jade.js
