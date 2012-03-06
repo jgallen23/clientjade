@@ -52,7 +52,7 @@ To render the templates, just make a call like this:
 
 ### Live Example
 
-You can check out a live example [here](/example/)
+You can check out a live example [here](example/)
 
 ##History
 
