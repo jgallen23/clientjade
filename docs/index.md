@@ -56,6 +56,9 @@ You can check out a live example [here](example/)
 
 ##History
 
+###0.0.5
+- fixed issue when templates weren't in cwd
+
 ###0.0.4
 - added support for passing in folder
 
