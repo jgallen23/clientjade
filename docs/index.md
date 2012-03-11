@@ -9,7 +9,7 @@ clientjade is a command line tool to compile your jade templates into client sid
 ##Usage
  
 	`bash
-	Usage: clientjade <options> <jade files>
+	Usage: clientjade <options> <jade files/dir>
 
 	Options:
 
@@ -55,6 +55,9 @@ To render the templates, just make a call like this:
 You can check out a live example [here](example/)
 
 ##History
+
+###0.0.4
+- added support for passing in folder
 
 ###0.0.3
 - passed in filename so jade includes will work

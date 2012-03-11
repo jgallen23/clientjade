@@ -6,15 +6,15 @@ var compile = require('../lib/compile');
 
 
 program
-  .version('0.0.3')
+  .version('0.0.4')
   .option('-c, --compress', 'Compress output')
-  .usage('<options> <jade files>');
+  .usage('<options> <jade files/folder>');
 
 program.on('--help', function() {
   console.log('  Examples:');  
   console.log('');  
   console.log('    # compile jade files into js');
-  console.log('    $ clientjade test1.jade test2.jade > jade.js');
+  console.log('    $ clientjade test1.jade test2.jade templates/ > jade.js');
 }); 
 
 program.parse(process.argv);
