@@ -10,10 +10,10 @@
     "url": "https://github.com/jgallen23/clientjade.git"
   },
   "dependencies": {
-    "commander": "*",
-    "jade": "*",
-    "resistance": "*",
-    "uglify-js": "*"
+    "commander": "0.6.1",
+    "jade": "0.26.3",
+    "resistance": "1.3.2",
+    "uglify-js": "1.3.2"
   },
   "devDependencies": {
     "markx": "*"
