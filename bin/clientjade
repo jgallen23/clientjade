@@ -46,21 +46,19 @@ if (program.args.length != 0) {
       files: [dir],
       compress: program.compress
     };
-    var compiledir = function() {
+    var compiledir = function(msg) {
       compile(opts, function(err, result) {
         fs.writeFile(output, result);
       });
+      console.log(msg);
     };
 
     watcher.on('add', function(path) {
-      compiledir();
-      console.log('File added: ' + path);
+      compiledir('File added: ' + path);
     }).on('change', function(path) {
-      compiledir();
-      console.log('File changed: ' + path);
+      compiledir('File changed: ' + path);
     }).on('unlink', function(path) {
-      compiledir();
-      console.log('File removed: ' + path);
+      compiledir('File removed: ' + path);
     });
     console.log('Started!');
   } else {
