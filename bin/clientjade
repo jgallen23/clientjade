@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
 
+var fs = require('fs');
 var program = require('commander');
 var compile = require('../lib/compile');
+var chokidar = require('chokidar');
 
 
 program
   .version('0.1.0')
   .option('-c, --compress', 'Compress output')
+  .option('-w, --watch', 'Watch folder')
   .usage('<options> <jade files/folder>');
 
 program.on('--help', function() {
@@ -15,22 +18,58 @@ program.on('--help', function() {
   console.log('');  
   console.log('    # compile jade files into js');
   console.log('    $ clientjade test1.jade test2.jade templates/ > jade.js');
+  console.log('    # watch folder for changes');
+  console.log('    $ clientjade -w source_folder target_folder/compiled.js');
 }); 
 
 program.parse(process.argv);
 
-
-if (program.args.length != 0) {
-  var opts = {
-    files: program.args,
-    compress: program.compress
-  }
-  compile(opts, function(err, result) {
-    process.stdout.write(result);
-  });
-
-} else {
+var error = function() {
   process.stdout.write(program.helpInformation());
   program.emit('--help');
   process.exit(1);
+};
+
+if (program.args.length != 0) {
+  if(program.watch) {
+    if(program.args.length != 2) return error();
+    var dir = program.args[0];
+    var output = program.args[1];
+
+    console.log('Cleaning ' + output);
+    fs.writeFile(output, '');
+
+    console.log('\nStarting watcher...');
+    var watcher = chokidar.watch(dir, {persistent: true});
+
+    var opts = {
+      files: [dir],
+      compress: program.compress
+    };
+    var compiledir = function(msg) {
+      compile(opts, function(err, result) {
+        fs.writeFile(output, result);
+      });
+      console.log(msg);
+    };
+
+    watcher.on('add', function(path) {
+      compiledir('File added: ' + path);
+    }).on('change', function(path) {
+      compiledir('File changed: ' + path);
+    }).on('unlink', function(path) {
+      compiledir('File removed: ' + path);
+    });
+    console.log('Started!');
+  } else {
+    var opts = {
+      files: program.args,
+      compress: program.compress
+    }
+    compile(opts, function(err, result) {
+      process.stdout.write(result);
+    });
+  }
+} else {
+  error();
 }

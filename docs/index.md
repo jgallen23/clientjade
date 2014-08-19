@@ -9,18 +9,21 @@ clientjade is a command line tool to compile your jade templates into client sid
 ##Usage
  
 	`bash
-	Usage: clientjade <options> <jade files/dir>
+  Usage: clientjade <options> <jade files/folder>
 
-	Options:
+  Options:
 
-		-h, --help      output usage information
-		-V, --version   output the version number
-		-c, --compress  Compress output
+    -h, --help      output usage information
+    -V, --version   output the version number
+    -c, --compress  Compress output
+    -w, --watch     Watch folder
 
-	Examples:
+  Examples:
 
-		# compile jade files into js
-		$ clientjade test1.jade test2.jade > templates.js
+    # compile jade files into js
+    $ clientjade test1.jade test2.jade templates/ > jade.js
+    # watch folder for changes
+    $ clientjade -w source_folder target_folder/compiled.js
 
 ##Example
 
