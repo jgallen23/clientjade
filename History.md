@@ -1,3 +1,8 @@
+0.1.2 / 2014-08-19
+==================
+
+ * upgraded Jade to 1.5.0
+ * added watch folder functionality
 
 0.1.1 / 2012-10-05 
 ==================
